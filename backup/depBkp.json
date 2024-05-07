@@ -1,0 +1,9 @@
+{
+    "subscription_urls": {
+        "8": "http://wcsservice.gn.wcs.prod/misplace_shipment_notification",
+        "4": "http://wcsservice.gn.wcs.prod/destination_notification",
+        "3": "http://wcsservice.gn.wcs.prod/destination_notification"
+    },
+    "currentRunningMap": "Stitched Map_KD4 + Production_31_01_2024",
+    "applicationPods": []
+}
