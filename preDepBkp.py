@@ -13,38 +13,6 @@ import datetime
 import os
 import sys
 
-def checkFiles():
-    if not os.path.exists('auth.yml'):
-        print('ERROR: auth.yml file is not present in this directory.')
-    if not os.path.exists('backup/depBkp.json'):
-        print('ERROR: depBkp.json file is not present in this directory')
-        
-
-def createLogFile():
-    logs_directory = 'logs'
-
-    # Creating the logs directory to store logs if not already present
-    if not os.path.exists(logs_directory):
-        os.makedirs(logs_directory)
-        print(f"'{logs_directory}' Directory created.")
-        
-    currentDateTime = datetime.datetime.now()
-    formatedDateTime = currentDateTime.strftime("%Y-%m-%d_%H-%M-%S")
-    fileName = f"log_{formatedDateTime}.log"
-    try:
-        filePath = os.path.join(logs_directory,fileName)
-        with open(filePath, 'w'):
-            print(f"Log file '{fileName}' created.")
-            return filePath
-    except Exception as e:
-        print("An error occured while creating the log file: '{e}' ")
-        sys.exit(1)
-
-
-def setupLogging(filePath):
-    logging.basicConfig(filename=filePath, level=logging.DEBUG, format="%(asctime)s - %(levelname)s - %(message)s")
-
-
 def writeToFile(filePath, key, value):
     with open(filePath, 'r') as bkpFile:
         contents = json.load(bkpFile)
@@ -250,15 +218,6 @@ def downloadSmsConfig(smsDbDriver):
     #     anchor.click()
     # time.sleep(5)
 
-
-# # Checking if required files are present
-# checkFiles()
-
-# # Creating a log file for this execution
-# filePath = createLogFile()
-
-# # set up log file for logging 
-# setupLogging(filePath)
 
 # Creating object of login class
 login = Login()
