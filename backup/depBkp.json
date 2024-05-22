@@ -1,9 +1,9 @@
 {
     "subscription_urls": {
-        "8": "http://wcsservice.gn.wcs.prod/misplace_shipment_notification",
-        "4": "http://wcsservice.gn.wcs.prod/destination_notification",
-        "3": "http://wcsservice.gn.wcs.prod/destination_notification"
+        "3": "http://190.196.60.149:8000/dss/v1/notification/pptl",
+        "2": "http://190.196.60.149:8000/dss/v1/notification/sort-complete",
+        "1": "http://190.196.60.149:8000/dss/v1/notification/sort-complete"
     },
-    "currentRunningMap": "Stitched Map_KD4 + Production_31_01_2024",
-    "applicationPods": []
+    "currentRunningMap": "stitched_09_Apr_2024",
+    "currentRunningMapID": "23"
 }

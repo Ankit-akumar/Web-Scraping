@@ -17,7 +17,7 @@ def checkFiles():
     if not os.path.exists('auth.yml'):
         print('ERROR: auth.yml file is not present in this directory.')
     if not os.path.exists('backup/depBkp.json'):
-        print('ERROR: depBkp.json file is not present in this directory')
+        print('ERROR: depBkp.json file is not present in backup directory')
         
 
 def createLogFile():
@@ -69,7 +69,7 @@ def getSubscriptionUrls(url, sorterDbDriver):
 
         #getting subscriptions from page source
         eventList = soup.find_all('th', class_='field-pk')
-        subscriptionList = soup.find_all('input', class_='vURLField')
+        subscriptionList = soup.find_all('input', class_='vTextField')
         subscriptionsCount = soup.find('p', class_='paginator').get_text(strip=True)
         subscriptionsCount = int(subscriptionsCount[0])
         print(subscriptionsCount)
@@ -224,6 +224,7 @@ def downloadMap(url, mdDbDriver, currentRunningMap):
             time.sleep(5)
             driver.find_element(By.CLASS_NAME, 'download-map').click()
             time.sleep(8)
+            return mapId
 
 
 def downloadSmsConfig(smsDbDriver):
@@ -278,6 +279,7 @@ sorterDbDriver = login.login(URL+"sorter/login/", "id_username", "id_password", 
 
 # getting subscription urls from the sorter dashboard
 subscriptionDict = getSubscriptionUrls(URL+"sorter/data/subscription/", sorterDbDriver)
+print(subscriptionDict)
 
 # Writing subscription urls into backup file
 writeToFile('backup/depBkp.json', 'subscription_urls', subscriptionDict)
@@ -305,12 +307,13 @@ print("Map name copied from MD - "+currentRunningMap)
 writeToFile('backup/depBkp.json','currentRunningMap',currentRunningMap)
 
 # downloading map from map-creator
-downloadMap(URL+"map-creator/", mdDbDriver, currentRunningMap)
+currentRunningMapID = downloadMap(URL+"map-creator/", mdDbDriver, currentRunningMap)
+writeToFile('backup/depBkp.json', 'currentRunningMapID', currentRunningMapID)
 mdDbDriver.quit()
 
-# logging into SMS and getting driver object
-smsDbDriver = login.login(URL+'sms/admin/login/', 'username', 'password', 'btn.btn-primary', username, password)
+# # logging into SMS and getting driver object
+# smsDbDriver = login.login(URL+'sms/admin/login/', 'username', 'password', 'btn.btn-primary', username, password)
 
-# downloading sms config (httpnotifiers.csv)
-downloadSmsConfig(smsDbDriver)
-smsDbDriver.quit()
+# # downloading sms config (httpnotifiers.csv)
+# downloadSmsConfig(smsDbDriver)
+# smsDbDriver.quit()
