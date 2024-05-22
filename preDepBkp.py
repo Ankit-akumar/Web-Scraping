@@ -252,15 +252,6 @@ def downloadSmsConfig(smsDbDriver):
     # time.sleep(5)
 
 
-# # Checking if required files are present
-# checkFiles()
-
-# # Creating a log file for this execution
-# filePath = createLogFile()
-
-# # set up log file for logging 
-# setupLogging(filePath)
-
 # Creating object of login class
 login = Login()
 

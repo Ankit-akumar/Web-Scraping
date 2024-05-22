@@ -1,4 +1,4 @@
 user:
-  url: https://dafiti-stg-rms.greymatter.greyorange.com/
-  username: support
-  password: support#19
+  url: https://example.com/
+  username: example
+  password: example
